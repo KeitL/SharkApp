@@ -1,19 +1,21 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Blood {
 
-    int current_location_x; //координаты по х
-    int current_location_y; //координаты по y
+    int x; //координаты по х
+    int y; //координаты по y
     //final int Y = 450;
-    double movement_dx = 10; //клетки по х
-    int movement_dy = 1; //клетки по y
-    final int SHARK_WIDTH = 25; // ширина акулы
-    final int SHARK_HEIGHT = 50; // высота акулы
+    double dx = 1; //клетки по х
+    int dy = 1; //клетки по y
+    final int DIAMETER = 25; // ширина акулы
+    final int SHARK_HEIGHT = 25; // высота акулы
 
     BufferedImage bi;
     public Blood() {
@@ -24,14 +26,27 @@ public class Blood {
         }
     }
 
+    public  void move() {
+        x+=dx;
+        y+=dy;
+        if(x+DIAMETER>400)
+            dx=-1;
+        if(x<0)
+            dx=1;
+        if(y<0)
+            dy=1;
+    }
+
     public void paint(Graphics g) {
-        //g.fillRect(bi, x, y, SHARK_WIDTH, SHARK_HEIGHT);
-        g.drawImage(bi, 100, 100,25, 100, null);
-        // }
-        ///g.setColor(Color.red);
+        g.drawImage(bi, 100, 100,25, 25, null);
     }
 
     public Rectangle getBounds(){
-        return new Rectangle(current_location_x, current_location_y, SHARK_WIDTH, SHARK_HEIGHT);
+        return new Rectangle(x, y, DIAMETER, SHARK_HEIGHT);
+    }
+
+    public static int generateRandomInt(int upperRange){
+        Random random = new Random();
+        return random.nextInt(upperRange);
     }
 }

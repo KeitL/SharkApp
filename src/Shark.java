@@ -10,6 +10,14 @@ import java.util.logging.Logger;
 
 public class Shark {
 
+
+    int x;
+    int y;
+    int dx=0;
+    int dy=0;
+    final int WIDTH=100;
+    final int HEIGHT=100;
+
     BufferedImage bi;
 
     public Shark() {
@@ -20,46 +28,36 @@ public class Shark {
         }
     }
 
-    int x; //координаты по х
-    int y; //координаты по y
-    //final int Y = 450;
-    double movement_dx = 10; //клетки по х
-    int movement_dy = 1; //клетки по y
-    final int SHARK_WIDTH = 150; // ширина акулы
-    final int SHARK_HEIGHT = 50; // высота акулы
 
-//    public void move() {
-//        x += movement_dx;
-//        if (x <= 0) {
-//            movement_dx = 0;
-//            x = 1;
-//        }
-//        if (x + SHARK_WIDTH >= 700) {
-//            movement_dx = 0;
-//            x -= 1;
-//        }
-//        y += movement_dy;
-//        if (y <= 0) {
-//            movement_dy = 0;
-//            y = 1;
-//        }
-//        if (y + SHARK_HEIGHT >= 900) {
-//            movement_dy = 0;
-//            y -= 1;
-//        }
-//
-//    }
+    public void move() {
+        x+=dx;
+        if (x<=0){
+            dx=0;
+            x=1;
+        }
+        if(x+WIDTH>=600){
+            dx=0;
+            x-=1;
+        }
+        y+=dy;
+        if (y<=0){
+            dy=0;
+            y=1;
+        }
+        if(y+HEIGHT>=600){
+            dy=0;
+            y-=1;
+        }
+
+    }
 
 
 
     public void paint(Graphics g) {
-        //g.fillRect(bi, x, y, SHARK_WIDTH, SHARK_HEIGHT);
-        g.drawImage(bi, x, y,SHARK_WIDTH, SHARK_HEIGHT, null);
-   // }
-        ///g.setColor(Color.red);
+        g.drawImage(bi, x, y,WIDTH, HEIGHT, null);
     }
 
     public Rectangle getBounds(){
-        return new Rectangle(x, y, SHARK_WIDTH, SHARK_HEIGHT);
+        return new Rectangle(x, y, WIDTH, HEIGHT);
     }
 }

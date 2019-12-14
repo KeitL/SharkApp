@@ -15,7 +15,7 @@ public class FinalProjectShark {
         System.out.println(game.getHeight());
         System.out.println(game.getWidth());
 
-        game.setPreferredSize(new Dimension(100, 100));
+        game.setPreferredSize(new Dimension(700, 700));
         frame.add(game, BorderLayout.CENTER);
 
         frame.setVisible(true);
